@@ -1,3 +1,39 @@
+////////// Populate the display when buttons pressed
+
+const display = document.querySelector('#display');
+
+const numberButtons = document.querySelectorAll('.number');
+for (const button of numberButtons) {
+    button.addEventListener('click', addToDisplay);
+};
+
+const operatorButtons = document.querySelectorAll('.operator');
+for (const button of operatorButtons) {
+    button.addEventListener('click', addToDisplay);
+};
+
+
+const displayArray = [50, '*', 4];
+const displayText = displayArray.join('');
+
+const displayTextDiv = document.createElement('div');
+displayTextDiv.classList.add('display-text-div');
+displayTextDiv.textContent = displayText;
+display.appendChild(displayTextDiv);
+
+
+function addToDisplay (value) {
+    
+}
+
+
+
+
+
+
+
+/////////// Calculation functions
+
 const add = function(a, b) {
 	let result = a + b;
   return result;
@@ -8,22 +44,10 @@ const subtract = function(a, b) {
   return result;
 };
 
-// const sum = function(arr) {
-// 	let result = arr.reduce((a, b) => a + b, 0);
-//   return result;
-// };
-
-// const multiply = function(a, b) {
-//   let result = arr.reduce((a, b) => a * b);
-//   return result;
-// };
-
 const multiply = function(a, b) {
     let result = a * b;
     return result;
   };
-
-
 
 const divide = function(a, b) {
     let result = a / b;
@@ -43,7 +67,6 @@ const factorial = function(num) {
 };
 
 
-
 const operate = function(a, operator, b) {
     if (operator == '+') {
         return add(a, b);
@@ -56,7 +79,6 @@ const operate = function(a, operator, b) {
     }
 }
 
-console.log(operate(10, '/', 5 ));
 
 
 /*
