@@ -1,30 +1,36 @@
 ////////// Populate the display when buttons pressed
 
-const display = document.querySelector('#display');
 
 const numberButtons = document.querySelectorAll('.number');
 for (const button of numberButtons) {
     button.addEventListener('click', addToDisplay);
 };
 
+
+
 const operatorButtons = document.querySelectorAll('.operator');
 for (const button of operatorButtons) {
     button.addEventListener('click', addToDisplay);
 };
 
-
-const displayArray = [50, '*', 4];
-const displayText = displayArray.join('');
-
-const displayTextDiv = document.createElement('div');
-displayTextDiv.classList.add('display-text-div');
-displayTextDiv.textContent = displayText;
-display.appendChild(displayTextDiv);
+let displayText = '';
 
 
-function addToDisplay (value) {
-    
+
+
+display.textContent = displayText;
+
+
+
+
+
+function addToDisplay() {
+    displayText += this.value;    
+    const display = document.querySelector('#display');
+    display.textContent = displayText;
+    console.log(displayText);
 }
+
 
 
 
@@ -81,49 +87,27 @@ const operate = function(a, operator, b) {
 
 
 
-/*
-
-const operate = function(a, b, operator) {
-  switch (operator) {
-    case '+':
-        return add(a, b);
-    case '-':
-        return subtract(a, b);
-    case '*':
-        return multiply(a, b);
-    case '/':
-    return divide(a, b);
-
-}
-};
-
-
-console.log(operate(10, '*', 5 ));
-
-*/
 
 
 /*
 
-const operate = function(a, b, operator) {
-    switch (operator) {
-      case '+':
-          return add(a, b);
-      case '-':
-          return subtract(a, b);
-      case '*':
-          return multiply(a, b);
-      case '/':
-          return divide(a, b);
-      default:
-          return 'Operator not recognized';
-    }
-  };
-  
-  console.log(operate(10, '*', 5 )); // 50
-  
+const buttonZero = document.querySelector('#zero');
+const buttonOne = document.querySelector('#one');
+const buttonTwo = document.querySelector('#two');
+const buttonThree = document.querySelector('#three');
+const buttonFour = document.querySelector('#four');
+const buttonFive = document.querySelector('#five');
+const buttonSix = document.querySelector('#six');
+const buttonSeven = document.querySelector('#seven');
+const buttonEight = document.querySelector('#eight');
+const buttonNine = document.querySelector('#nine');
+const buttonDecimal = document.querySelector('#ten');
+const buttonPlus = document.querySelector('#plus');
+const buttonSubtract = document.querySelector('#subtract');
+const buttonMultiply = document.querySelector('#multiply');
+const buttonDivide = document.querySelector('#divide');
+const buttonEquals = document.querySelector('#equals');
+const buttonDelete = document.querySelector('#delete');
+const buttonClear = document.querySelector('#clear');
+
 */
-
-
-
-
