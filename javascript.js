@@ -1,16 +1,15 @@
 ////////// Populate the display when buttons pressed
 
-
 const numberButtons = document.querySelectorAll('.number');
 for (const button of numberButtons) {
     button.addEventListener('click', addToDisplay);
 };
 
 
-
 const operatorButtons = document.querySelectorAll('.operator');
 for (const button of operatorButtons) {
     button.addEventListener('click', addToDisplay);
+    button.addEventListener('click', saveNumber);
 };
 
 let displayText = '';
@@ -18,9 +17,53 @@ let displayText = '';
 
 
 
-display.textContent = displayText;
+let testString = '123/456';
+
+let a = null;
+let b = null;
+let operator = null;
+
+console.log(a);
+console.log(b);
+console.log(operator);
 
 
+function saveNumber() {
+    if (a === null) {
+        a = displayText.slice(0, displayText.indexOf(this.value));
+        console.log(a);        
+    }
+    else {
+        b = displayText.slice(a.length + 1);
+        operator = displayText.slice((a.length), (a.length + 1));
+    console.log(b);
+    console.log(operator);
+    console.log(operate(a, operator, b));
+
+    }
+}
+
+
+
+/*
+
+function saveNumber() {
+    if (!((displayText).includes('*' || '/' || '+' || '/'))) {
+        let a = displayText.slice(0);
+        console.log(a);
+        return a;
+    } else if ((displayText).includes('*' || '/' || '+' || '/')) {{
+        let b = displayText.substring(
+            displayText.indexOf('*') +1,
+            displayText.lastIndexOf(-1)
+            );
+            console.log(b);
+            return b;
+    }}
+    
+};
+
+*/
 
 
 
@@ -28,14 +71,26 @@ function addToDisplay() {
     displayText += this.value;    
     const display = document.querySelector('#display');
     display.textContent = displayText;
-    console.log(displayText);
 }
 
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', clear);
 
 
+function clear(){
+    displayText = '';
+    display.textContent = displayText;
+    a = null;
+    b = null;
+}
 
+const deleteButton = document.querySelector('#delete');
+deleteButton.addEventListener('click', deleteChar);
 
-
+function deleteChar() {
+    displayText = displayText.slice(0, -1);
+    display.textContent = displayText;
+}
 
 
 /////////// Calculation functions
@@ -74,6 +129,8 @@ const factorial = function(num) {
 
 
 const operate = function(a, operator, b) {
+    a = parseFloat(a);
+    b = parseFloat(b);
     if (operator == '+') {
         return add(a, b);
     } else if (operator =='-') {
