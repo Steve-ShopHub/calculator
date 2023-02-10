@@ -24,18 +24,37 @@
 */
 
 let displayText = '0';
-let a = 0;
+let a = null; //changed from 0
 let b = null;
 let operator = null;
 
 const numberButtons = document.querySelectorAll('.number');
 for (const button of numberButtons) {
     button.addEventListener('click', numberPress);
-    button.addEventListener('click', addToDisplay);
 };
 
 function numberPress(){
-    
+    console.log(this.value);
+    if ((displayText.charAt(0) == '0')) {
+        displayText = displayText.slice(1);
+        displayText += this.value;
+        console.log('Display text: ' + displayText);
+        display.textContent = displayText;        
+    }
+// Need to remove old display upon number after operator
+    if (b == 0){
+        b = null;
+        displayText = '';
+        displayText += this.value;
+        console.log('Display text: ' + displayText);
+        display.textContent = displayText;
+
+    }
+    else {
+    displayText += this.value;
+    console.log('Display text: ' + displayText);
+    display.textContent = displayText;
+    }
 
 }
 
@@ -46,6 +65,7 @@ for (const button of operatorButtons) {
 
 function operatorPress(){
     a = displayText;
+    b = 0;
     operator = this.value;
     console.log('A: ' + a);
     console.log('Operator: ' + operator);
@@ -54,15 +74,7 @@ function operatorPress(){
 const display = document.querySelector('#display');
 display.textContent = displayText;
 
-function addToDisplay(){
-    if (displayText.charAt(0) == '0') {
-        displayText = displayText.slice(1);        
-    }
-    displayText += this.value;
-    console.log(displayText);
-    display.textContent = displayText;
-    
-};
+
 
 
 
@@ -73,7 +85,7 @@ clearButton.addEventListener('click', clear);
 
 
 function clear(){
-    displayText = '';
+    displayText = '0';
     display.textContent = displayText;
     a = 0;
     b = null;
