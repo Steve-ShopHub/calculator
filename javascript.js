@@ -1,99 +1,142 @@
-////////// Populate the display when buttons pressed
+/*
+// let display = 0;
+// let A = 0;
+// let B = null;
 
-const numberButtons = document.querySelectorAll('.number');
-for (const button of numberButtons) {
-    button.addEventListener('click', addToDisplay);
-    button.addEventListener('click', refreshDisplay);
-};
+// When number is pressed, add to display
 
-const equalsButton = document.querySelector('#equals');
-equalsButton.addEventListener('click', equals);
+// When operator is pressed, save number 'A' (running total) and operator
 
-function equals(){
-  ///
-}
+// When next number (B) is entered after operator, hide A and show B (on first number, live change)
 
+// Start: (display 0)
+// 5 (display 5)
+// + (save: A = display [5], operator = +) (if B = null, return A[5]?)
+// 1 (display = 1)
+// 5 (display = 15)
+// * (save B = display [15], A = operate(A, operator, B) 
+//                        display = A [20], operator = *)
+// 1 (display = 1)
+// 0 (display = 10)
+// = (save B = display[10], A = operate(A, operator, B) 
+//                        display = A [20], operator = =)
 
-const operatorButtons = document.querySelectorAll('.operator');
-for (const button of operatorButtons) {
-    // button.addEventListener('click', addToDisplay);
-    button.addEventListener('click', saveNumber);
-    button.addEventListener('click', logEvent);
-};
+*/
 
-function logEvent(){
-  console.log(this.value);
-}
-
-let displayText = '';
-
-
-
-
-let testString = '123/456';
-
-let x = null;
-let y = null;
-let a = null;
+let displayText = '0';
+let a = null; //changed from 0
 let b = null;
 let operator = null;
 
-console.log(x);
-console.log(y);
-console.log(operator);
+const numberButtons = document.querySelectorAll('.number');
+for (const button of numberButtons) {
+    button.addEventListener('click', numberPress);
+};
 
-/* CONVERT BELOW TO AN ARRAY TO ENABLE MULTIPLE NUMBERS */
-
-
-function saveNumber() {
-    if (x === null) {
-        x = displayText.slice(0, displayText.indexOf(this.value));
-        operator = displayText.slice(-1);
-        console.log(x);
-        console.log('X1:' + x);
-        console.log('Y1: ' + y);
-        console.log('Operator1: ' + operator );        
+function numberPress(){
+    operatorEnable();
+    console.log(this.value);
+    console.log(operator);
+    if ((displayText.charAt(0) == '0')) {
+        displayText = displayText.slice(1);
+        displayText += this.value;
+        console.log('Display text: ' + displayText);
+        display.textContent = displayText;        
     }
-    else if (x !== null && y === null) {
-        y = displayText.slice(x.length + 1, -1);
-        let a = operate(x, operator, y);
-        x == a;
-        operator = displayText.slice((x.length), (x.length + 1));
-        displayText = x;
-        console.log('X2:' + x);
-        console.log('Y2: ' + y);
-        console.log('Operator2: ' + operator );
-        console.log(operate(x, operator, y));
-    } else if (x !== null && y !== null) {
-     console.log('Operate: ' + operate(x, operator, y));
-     let result = operate(x, operator, y);
-     x = result;
-     y = null;
-     operator = null;
-    console.log('X3:' + x);
-    console.log('Y3: ' + y);
-    console.log('Operator3: ' + operator );
+    else if (b == 0){ // operator just pressed
+        b = null;
+        displayText = '';
+        displayText += this.value;
+        console.log('Display text: ' + displayText);
+        display.textContent = displayText;
+    }
+    else if (operator == '='){
+        a = null;
+        b = 0;
+        operator = null;
+        displayText = '';
+        displayText += this.value;
+        console.log('Display text: ' + displayText);
+        display.textContent = displayText;
+
+    }
+    else {
+    displayText += this.value;
+    console.log('Display text: ' + displayText);
+    display.textContent = displayText;
+    }
+
+}
+
+const operatorButtons = document.querySelectorAll('.operator');
+for (const button of operatorButtons) {
+    button.addEventListener('click', operatorPress);
+};
+
+function operatorPress(){
+    operatorEnable();
+    let id = this.id;
+    console.log(id);
+    if (a == null && operator == null) {
+    document.querySelector('#' + id).disabled = true;
+    a = displayText;
+    b = 0;
+    operator = this.value;
+    console.log('A: ' + a);
+    console.log('Operator: ' + operator);
+    }
+    else if (this.value == '='){
+        b = displayText;
+        a = operate(a, operator, b);
+        displayText = a.toString();
+        display.textContent = displayText;
+        a = null;
+        b = null;
+        operator = null;
+        document.querySelector('#' + id).disabled = true;
+        console.log('B: ' + b);
+        console.log('A: ' + a);
+        console.log('Operator: ' + operator);
+    }
+    else {
+        b = displayText;
+        a = operate(a, operator, b);
+        console.log(a);
+        displayText = a.toString();
+        display.textContent = displayText;
+        operator = this.value;
+        b = 0;
+        document.querySelector('#' + id).disabled = true;
+        console.log('B: ' + b);
+        console.log('A: ' + a);
+        console.log('Operator: ' + operator);
     }
 };
 
-function addToDisplay() {
-    displayText += this.value;    
-    const display = document.querySelector('#display');
-    display.textContent = displayText;
+function operatorEnable(){
+    for (const button of operatorButtons) {
+        button.removeAttribute('disabled');
+    };
 }
 
-function refreshDisplay(){
-  //when number is pressed after operator, show sum number to date
-}
+const display = document.querySelector('#display');
+display.textContent = displayText;
+
+
+
+
+
+
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', clear);
 
 
 function clear(){
-    displayText = '';
+    operatorEnable();
+    displayText = '0';
     display.textContent = displayText;
-    a = null;
+    a = 0;
     b = null;
 }
 
@@ -101,9 +144,17 @@ const deleteButton = document.querySelector('#delete');
 deleteButton.addEventListener('click', deleteChar);
 
 function deleteChar() {
+    operatorEnable();
     displayText = displayText.slice(0, -1);
     display.textContent = displayText;
+    console.log(displayText.length)
+    if (displayText.length == 0){
+        displayText += 0;
+        display.textContent = displayText;
 }
+};
+
+
 
 
 /////////// Calculation functions
@@ -157,27 +208,27 @@ const operate = function(a, operator, b) {
 
 
 
+// function checkInitial(){
+//     if b
+// }
 
 
-/*
+// function (operator is pressed) {
+//                     If b == null { //first 
+//                          display a;    
+//                     };                  
+//                      
+//                      
+//                    If (operator !== 'equals'){ 
+//                                              Result = Perform operate function (existing operator)
+//                                              A = Result
+//                                              Display A
+//                    };
+//                    If (operator == 'equals'){
+//                                      4) Update to new operator
+//                                      5) Display A
+//                                      }
+//                         };
 
-const buttonZero = document.querySelector('#zero');
-const buttonOne = document.querySelector('#one');
-const buttonTwo = document.querySelector('#two');
-const buttonThree = document.querySelector('#three');
-const buttonFour = document.querySelector('#four');
-const buttonFive = document.querySelector('#five');
-const buttonSix = document.querySelector('#six');
-const buttonSeven = document.querySelector('#seven');
-const buttonEight = document.querySelector('#eight');
-const buttonNine = document.querySelector('#nine');
-const buttonDecimal = document.querySelector('#ten');
-const buttonPlus = document.querySelector('#plus');
-const buttonSubtract = document.querySelector('#subtract');
-const buttonMultiply = document.querySelector('#multiply');
-const buttonDivide = document.querySelector('#divide');
-const buttonEquals = document.querySelector('#equals');
-const buttonDelete = document.querySelector('#delete');
-const buttonClear = document.querySelector('#clear');
 
-*/
+
