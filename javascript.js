@@ -28,13 +28,127 @@ let a = null; //changed from 0
 let b = null;
 let operator = null;
 
+
+
+window.addEventListener("click", handleButtonClick);
+window.addEventListener("keydown", handleKeyPress);
+
+function handleButtonClick(event) {
+    if (event.target.matches(".number")) {
+        numberPress(event.target.value);
+    }
+}
+
+function handleKeyPress(event) {
+     const button = document.querySelector(`button[data-key="${event.keyCode}"]`);
+    if (button && button.matches(".number")) {
+        numberPress(button.value);
+    }
+}
+
+function numberPress(value) {
+    operatorEnable();
+    console.log(value);
+    console.log(operator);
+    if ((displayText.charAt(0) == "0")) {
+        displayText = displayText.slice(1);
+        displayText += value;
+        console.log("Display text: " + displayText);
+        display.textContent = displayText;        
+    }
+    else if (b == 0) {
+        b = null;
+        displayText = "";
+        displayText += value;
+        console.log("Display text: " + displayText);
+        display.textContent = displayText;
+    }
+    else if (operator == "=") {
+        a = null;
+        b = 0;
+        operator = null;
+        displayText = "";
+        displayText += value;
+        console.log("Display text: " + displayText);
+        display.textContent = displayText;
+    }
+    else {
+        displayText += value;
+        console.log("Display text: " + displayText);
+        display.textContent = displayText;
+    }
+}
+
+
+/*
+
 const numberButtons = document.querySelectorAll('.number');
 for (const button of numberButtons) {
     button.addEventListener('click', numberPress);
+    // button.addEventListener('keydown', );
 };
+
+*/
+
+
+// let keyCode = document.querySelector(`button[data-key="48"`)
+// console.log(keyCode);
+
+/*
+
+window.addEventListener('keydown', test());
+
+function test(){
+    console.log(event.keyCode);
+}
+
+*/
+
+// const test = document.querySelector('#three');
+// alert(test.keyCode);
+
+
+/*
+
+const numberButtons = document.querySelectorAll('.number');
+for (const button of numberButtons) {
+    button.addEventListener('click', numberPress);
+    button.addEventListener('keydown', function(e) {
+        let keyCode = document.querySelector(`button[data-key="${e.keyCode}"]`);
+        if (keyCode === e.keyCode) {
+            numberPress();
+        }
+    });
+};
+
+*/
+
+
+/*
+function keyPress(){
+    const allButtons = document.querySelectorAll('.number, .operator, .function');
+    for (const button of allButtons) {
+        if (this.keyCode = event.keyCode){
+            // console.log(this.keyCode);
+            console.log(event.keyCode);
+            
+        }
+    }
+};
+*/
+
+// function keyLog(){
+//     console.log(event);
+// }
+
+// window.addEventListener('keydown', keyPress);
+// window.addEventListener('keydown', keyLog);
+
+/*
 
 function numberPress(){
     operatorEnable();
+
     console.log(this.value);
     console.log(operator);
     if ((displayText.charAt(0) == '0')) {
@@ -67,6 +181,8 @@ function numberPress(){
     }
 
 }
+
+*/
 
 const operatorButtons = document.querySelectorAll('.operator');
 for (const button of operatorButtons) {

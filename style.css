@@ -8,6 +8,9 @@
     width: 100vh
 }
 
+button {
+    font-size: large;
+}
 
 #calculator-frame {
     display: grid;
