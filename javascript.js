@@ -37,13 +37,26 @@ function handleButtonClick(event) {
     if (event.target.matches(".number")) {
         numberPress(event.target.value);
     }
+    if (event.target.matches(".operator")) {
+        operatorPress(event.target.id);
+    }
+    if (event.target.matches(".function")) {
+        functionPress(event.target.id);
+    }
 }
 
 function handleKeyPress(event) {
-     const button = document.querySelector(`button[data-key="${event.keyCode}"]`);
+    const button = document.querySelector(`button[data-key="${event.keyCode}"]`);
     if (button && button.matches(".number")) {
         numberPress(button.value);
     }
+    if (button && button.matches(".operator")) {
+        operatorPress(button.id);
+    }
+    if (button && button.matches(".function")) {
+        functionPress(button.id);
+    }
+    
 }
 
 function numberPress(value) {
@@ -78,6 +91,110 @@ function numberPress(value) {
         display.textContent = displayText;
     }
 }
+
+const operatorButtons = document.querySelectorAll('.operator');
+for (const button of operatorButtons) {
+    button.addEventListener('click', operatorPress);
+};
+
+
+
+
+function operatorPress(id){
+    operatorEnable();
+    const button = document.querySelector('#' + id);
+    // let id = this.id;
+    console.log(id);
+    if (a == null && operator == null) {
+    button.disabled = true;
+    // document.querySelector('#' + id).disabled = true;
+    a = displayText;
+    b = 0;
+    operator = button.value;
+    console.log('A: ' + a);
+    console.log('Operator: ' + operator);
+    }
+    else if (button.value == '='){
+        b = displayText;
+        a = operate(a, operator, b);
+        displayText = a.toString();
+        display.textContent = displayText;
+        a = null;
+        b = null;
+        operator = null;
+        button.disabled = true;
+        // document.querySelector('#' + id).disabled = true;
+        console.log('B: ' + b);
+        console.log('A: ' + a);
+        console.log('Operator: ' + operator);
+    }
+    else {
+        b = displayText;
+        a = operate(a, operator, b);
+        console.log(a);
+        displayText = a.toString();
+        display.textContent = displayText;
+        operator = button.value;
+        b = 0;
+        button.disabled = true;
+        // document.querySelector('#' + id).disabled = true;
+        console.log('B: ' + b);
+        console.log('A: ' + a);
+        console.log('Operator: ' + operator);
+    }
+};
+
+function operatorEnable(){
+    for (const button of operatorButtons) {
+        button.removeAttribute('disabled');
+    };
+}
+
+const display = document.querySelector('#display');
+display.textContent = displayText;
+
+
+
+function functionPress(id){
+    operatorEnable();
+    if (id == '#clear') {
+        clear();
+    }
+    if (id == '#delete') {
+        deleteChar();
+    }
+
+}
+
+
+
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', clear);
+
+
+function clear(){
+    operatorEnable();
+    displayText = '0';
+    display.textContent = displayText;
+    a = 0;
+    b = null;
+}
+
+const deleteButton = document.querySelector('#delete');
+deleteButton.addEventListener('click', deleteChar);
+
+function deleteChar() {
+    operatorEnable();
+    displayText = displayText.slice(0, -1);
+    display.textContent = displayText;
+    console.log(displayText.length)
+    if (displayText.length == 0){
+        displayText += 0;
+        display.textContent = displayText;
+}
+};
+
 
 
 /*
@@ -184,91 +301,6 @@ function numberPress(){
 
 */
 
-const operatorButtons = document.querySelectorAll('.operator');
-for (const button of operatorButtons) {
-    button.addEventListener('click', operatorPress);
-};
-
-function operatorPress(){
-    operatorEnable();
-    let id = this.id;
-    console.log(id);
-    if (a == null && operator == null) {
-    document.querySelector('#' + id).disabled = true;
-    a = displayText;
-    b = 0;
-    operator = this.value;
-    console.log('A: ' + a);
-    console.log('Operator: ' + operator);
-    }
-    else if (this.value == '='){
-        b = displayText;
-        a = operate(a, operator, b);
-        displayText = a.toString();
-        display.textContent = displayText;
-        a = null;
-        b = null;
-        operator = null;
-        document.querySelector('#' + id).disabled = true;
-        console.log('B: ' + b);
-        console.log('A: ' + a);
-        console.log('Operator: ' + operator);
-    }
-    else {
-        b = displayText;
-        a = operate(a, operator, b);
-        console.log(a);
-        displayText = a.toString();
-        display.textContent = displayText;
-        operator = this.value;
-        b = 0;
-        document.querySelector('#' + id).disabled = true;
-        console.log('B: ' + b);
-        console.log('A: ' + a);
-        console.log('Operator: ' + operator);
-    }
-};
-
-function operatorEnable(){
-    for (const button of operatorButtons) {
-        button.removeAttribute('disabled');
-    };
-}
-
-const display = document.querySelector('#display');
-display.textContent = displayText;
-
-
-
-
-
-
-
-const clearButton = document.querySelector('#clear');
-clearButton.addEventListener('click', clear);
-
-
-function clear(){
-    operatorEnable();
-    displayText = '0';
-    display.textContent = displayText;
-    a = 0;
-    b = null;
-}
-
-const deleteButton = document.querySelector('#delete');
-deleteButton.addEventListener('click', deleteChar);
-
-function deleteChar() {
-    operatorEnable();
-    displayText = displayText.slice(0, -1);
-    display.textContent = displayText;
-    console.log(displayText.length)
-    if (displayText.length == 0){
-        displayText += 0;
-        display.textContent = displayText;
-}
-};
 
 
 
