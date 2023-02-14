@@ -29,13 +29,14 @@ h4 {
     margin-bottom: 20px;
     margin-top: 30px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     width: 600px;
 }
 
 #message-para {
     margin: 10px;
     font-weight: normal;
+    font-size: 16px;
 }
 
 
@@ -72,6 +73,11 @@ ul li {
  
 }
 
+button.pressed {
+    filter: brightness(0.8);
+
+}
+
 button.disabled {
     filter: brightness(0.8);
 }
@@ -79,8 +85,7 @@ button.disabled {
 button {
     font-size: 35px;
     border-radius: 10px;
-    border: outset 3px rgb(71, 71, 71);
-}
+    border: outset 3px rgb(71, 71, 71);}
 
 button.operator {
     background-color: orange;

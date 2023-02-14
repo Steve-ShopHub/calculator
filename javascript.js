@@ -63,6 +63,9 @@ function handleKeyPress(event) {
 function numberPress(value) {
     const button = document.querySelector(`button[value="${value}"]`);
     operatorEnable();
+    button.classList.add('pressed');
+    setTimeout(function() {button.classList.remove('pressed');
+    }, 50);
     console.log(value);
     console.log(operator);
     if (value == '.'){
