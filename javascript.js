@@ -62,12 +62,16 @@ function handleKeyPress(event) {
 
 function numberPress(value) {
     const button = document.querySelector(`button[value="${value}"]`);
+    const allNumBtn = document.querySelectorAll('.number');
     operatorEnable();
     button.classList.add('pressed');
     setTimeout(function() {button.classList.remove('pressed');
     }, 50);
     console.log(value);
     console.log(operator);
+    // if (displayText.length > 8){
+    //     allNumBtn.disabled = true;
+    // }
     if (value == '.'){
         button.disabled = true;
     }

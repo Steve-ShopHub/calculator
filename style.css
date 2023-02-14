@@ -1,6 +1,6 @@
 @font-face {
     font-family: "pixelated-two";
-    src: url("/fonts/pixelated2.ttf")
+    src: url("./fonts/pixelated2.ttf")
   }
 
 html {
