@@ -99,6 +99,9 @@ function numberPress(value) {
     }
     else {
         displayText += value;
+        if (displayText == '8008135') {
+            secretCode();
+        }
         console.log("Display text: " + displayText);
         display.textContent = displayText;
     }
@@ -124,9 +127,6 @@ function operatorPress(id){
     button.classList.add('disabled');
     // document.querySelector('#' + id).disabled = true;
     a = displayText;
-        if (displayText == '8008135') {
-            secretCode();
-        }
     b = 0;
     operator = button.value;
     console.log('A: ' + a);
