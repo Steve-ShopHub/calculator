@@ -110,6 +110,7 @@ function operatorPress(id){
     console.log(id);
     if (a == null && operator == null) {
     button.disabled = true;
+    button.classList.add('disabled');
     // document.querySelector('#' + id).disabled = true;
     a = displayText;
     b = 0;
@@ -126,6 +127,7 @@ function operatorPress(id){
         b = null;
         operator = null;
         button.disabled = true;
+        button.classList.add('disabled');
         // document.querySelector('#' + id).disabled = true;
         console.log('B: ' + b);
         console.log('A: ' + a);
@@ -143,6 +145,7 @@ function operatorPress(id){
         operator = button.value;
         b = 0;
         button.disabled = true;
+        button.classList.add('disabled');
         // document.querySelector('#' + id).disabled = true;
         console.log('B: ' + b);
         console.log('A: ' + a);
@@ -154,6 +157,7 @@ function operatorEnable(){
     let allButtons = document.querySelectorAll('.operator');
     for (const button of allButtons) {
         button.removeAttribute('disabled');
+        button.classList.remove('disabled');
     };
 }
 
