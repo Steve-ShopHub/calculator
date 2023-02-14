@@ -161,17 +161,17 @@ function operatorEnable(){
     };
 }
 
-const display = document.querySelector('#display');
+const display = document.querySelector('#text');
 display.textContent = displayText;
 
 
 
 function functionPress(id){
     operatorEnable();
-    if (id == '#clear') {
+    if (id == 'clear') {
         clear();
     }
-    if (id == '#delete') {
+    if (id == 'delete') {
         deleteChar();
     }
 
