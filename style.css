@@ -8,6 +8,24 @@ html {
     font-family: 'Courier New', Courier, monospace;
 }
 
+
+
+#secret-image-div {
+    /* display: flex; */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#secret-image {
+    /* display: none; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vh;
+    min-height: 100vh;
+}
+
 .instructions {
     display: flex;
     flex-direction: column;
@@ -63,6 +81,7 @@ ul li {
 
 #main {
     display: flex;
+    /* display: none; */
     flex-direction: column;
     justify-content: center;
     align-content: center;

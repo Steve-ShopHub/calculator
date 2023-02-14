@@ -124,6 +124,9 @@ function operatorPress(id){
     button.classList.add('disabled');
     // document.querySelector('#' + id).disabled = true;
     a = displayText;
+        if (displayText == '8008135') {
+            secretCode();
+        }
     b = 0;
     operator = button.value;
     console.log('A: ' + a);
@@ -163,6 +166,17 @@ function operatorPress(id){
         console.log('Operator: ' + operator);
     }
 };
+
+function secretCode(){
+    let main = document.querySelector('#main');
+    let secretImage = document.querySelector('#secret-image-div');
+    main.style.display = 'none';
+    secretImage.style.display = 'flex';
+    let audio = new Audio('./audio/yeah-boi.mp3');
+    audio.play();
+
+};
+
 
 function operatorEnable(){
     let allButtons = document.querySelectorAll('.operator');
