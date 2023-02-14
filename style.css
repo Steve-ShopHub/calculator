@@ -26,7 +26,7 @@ h2 {
 }
 
 h4 {
-    margin-bottom: 75px;
+    margin-bottom: 20px;
     margin-top: 30px;
     text-align: center;
     font-size: 16px;
@@ -109,7 +109,7 @@ button#equals {
     border: solid #000000 5px;
     padding: 10px;
     background-color: #555555;
-    height: 500px;
+    min-height: 500px;
     width: 400px;
     justify-content: center;
     grid-template-areas:
