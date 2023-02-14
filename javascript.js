@@ -34,6 +34,7 @@ window.addEventListener("click", handleButtonClick);
 window.addEventListener("keydown", handleKeyPress);
 
 function handleButtonClick(event) {
+    // const button = document.querySelector()
     if (event.target.matches(".number")) {
         numberPress(event.target.value);
     }
@@ -92,18 +93,20 @@ function numberPress(value) {
     }
 }
 
-const operatorButtons = document.querySelectorAll('.operator');
-for (const button of operatorButtons) {
-    button.addEventListener('click', operatorPress);
-};
+// const operatorButtons = document.querySelectorAll('.operator');
+// for (const button of operatorButtons) {
+//     button.addEventListener('click', operatorPress);
+//     // button.addEventListener('keydown', operatorPress);
+// };
 
 
 
 
 function operatorPress(id){
     operatorEnable();
-    const button = document.querySelector('#' + id);
+    
     // let id = this.id;
+    const button = document.querySelector('#' + id);
     console.log(id);
     if (a == null && operator == null) {
     button.disabled = true;
@@ -128,6 +131,9 @@ function operatorPress(id){
         console.log('A: ' + a);
         console.log('Operator: ' + operator);
     }
+    // else if (button.value == '=' && operator == null){
+        
+    // }
     else {
         b = displayText;
         a = operate(a, operator, b);
@@ -145,7 +151,8 @@ function operatorPress(id){
 };
 
 function operatorEnable(){
-    for (const button of operatorButtons) {
+    let allButtons = document.querySelectorAll('.operator');
+    for (const button of allButtons) {
         button.removeAttribute('disabled');
     };
 }
@@ -309,27 +316,27 @@ function numberPress(){
 
 const add = function(a, b) {
 	let result = a + b;
-  return result;
+    return result.toFixed(2);
 };
 
 const subtract = function(a, b) {
   let result = a - b;
-  return result;
+  return result.toFixed(2);
 };
 
 const multiply = function(a, b) {
     let result = a * b;
-    return result;
+    return result.toFixed(2);
   };
 
 const divide = function(a, b) {
     let result = a / b;
-    return result;
+    return result.toFixed(2);
   };
 
 const power = function(a, b) {
   let result = a ** b;
-  return result;
+  return result.toFixed(2);
 };
 
 const factorial = function(num) {
