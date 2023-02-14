@@ -61,9 +61,13 @@ function handleKeyPress(event) {
 }
 
 function numberPress(value) {
+    const button = document.querySelector(`button[value="${value}"]`);
     operatorEnable();
     console.log(value);
     console.log(operator);
+    if (value == '.'){
+        button.disabled = true;
+    }
     if ((displayText.charAt(0) == "0")) {
         displayText = displayText.slice(1);
         displayText += value;
