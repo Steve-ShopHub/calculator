@@ -104,7 +104,11 @@ button.disabled {
 button {
     font-size: 35px;
     border-radius: 10px;
-    border: outset 3px rgb(71, 71, 71);}
+    /* border: outset 3px rgb(71, 71, 71); */
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+    border: solid rgb(66, 66, 66) 1px;
+    /* border: none; */
+}
 
 button.operator {
     background-color: orange;
@@ -131,6 +135,7 @@ button#equals {
     gap: 8px;
     grid-template-rows: repeat(6, 1fr);
     border: solid #000000 5px;
+    border-radius: 15px;
     padding: 10px;
     background-color: #555555;
     min-height: 500px;

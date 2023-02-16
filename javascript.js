@@ -1,27 +1,3 @@
-/*
-// let display = 0;
-// let A = 0;
-// let B = null;
-
-// When number is pressed, add to display
-
-// When operator is pressed, save number 'A' (running total) and operator
-
-// When next number (B) is entered after operator, hide A and show B (on first number, live change)
-
-// Start: (display 0)
-// 5 (display 5)
-// + (save: A = display [5], operator = +) (if B = null, return A[5]?)
-// 1 (display = 1)
-// 5 (display = 15)
-// * (save B = display [15], A = operate(A, operator, B) 
-//                        display = A [20], operator = *)
-// 1 (display = 1)
-// 0 (display = 10)
-// = (save B = display[10], A = operate(A, operator, B) 
-//                        display = A [20], operator = =)
-
-*/
 
 let displayText = '0';
 let a = null; //changed from 0
@@ -34,7 +10,7 @@ window.addEventListener("click", handleButtonClick);
 window.addEventListener("keydown", handleKeyPress);
 
 function handleButtonClick(event) {
-    // const button = document.querySelector()
+     // const button = document.querySelector()
     if (event.target.matches(".number")) {
         numberPress(event.target.value);
     }
@@ -106,15 +82,6 @@ function numberPress(value) {
         display.textContent = displayText;
     }
 }
-
-// const operatorButtons = document.querySelectorAll('.operator');
-// for (const button of operatorButtons) {
-//     button.addEventListener('click', operatorPress);
-//     // button.addEventListener('keydown', operatorPress);
-// };
-
-
-
 
 function operatorPress(id){
     operatorEnable();
@@ -233,110 +200,6 @@ function deleteChar() {
 
 
 
-/*
-
-const numberButtons = document.querySelectorAll('.number');
-for (const button of numberButtons) {
-    button.addEventListener('click', numberPress);
-    // button.addEventListener('keydown', );
-};
-
-*/
-
-
-// let keyCode = document.querySelector(`button[data-key="48"`)
-// console.log(keyCode);
-
-/*
-
-window.addEventListener('keydown', test());
-
-function test(){
-    console.log(event.keyCode);
-}
-
-*/
-
-// const test = document.querySelector('#three');
-// alert(test.keyCode);
-
-
-/*
-
-const numberButtons = document.querySelectorAll('.number');
-for (const button of numberButtons) {
-    button.addEventListener('click', numberPress);
-    button.addEventListener('keydown', function(e) {
-        let keyCode = document.querySelector(`button[data-key="${e.keyCode}"]`);
-        if (keyCode === e.keyCode) {
-            numberPress();
-        }
-    });
-};
-
-*/
-
-
-/*
-function keyPress(){
-    const allButtons = document.querySelectorAll('.number, .operator, .function');
-    for (const button of allButtons) {
-        if (this.keyCode = event.keyCode){
-            // console.log(this.keyCode);
-            console.log(event.keyCode);
-            
-        }
-    }
-};
-*/
-
-// function keyLog(){
-//     console.log(event);
-// }
-
-// window.addEventListener('keydown', keyPress);
-// window.addEventListener('keydown', keyLog);
-
-/*
-
-function numberPress(){
-    operatorEnable();
-
-    console.log(this.value);
-    console.log(operator);
-    if ((displayText.charAt(0) == '0')) {
-        displayText = displayText.slice(1);
-        displayText += this.value;
-        console.log('Display text: ' + displayText);
-        display.textContent = displayText;        
-    }
-    else if (b == 0){ // operator just pressed
-        b = null;
-        displayText = '';
-        displayText += this.value;
-        console.log('Display text: ' + displayText);
-        display.textContent = displayText;
-    }
-    else if (operator == '='){
-        a = null;
-        b = 0;
-        operator = null;
-        displayText = '';
-        displayText += this.value;
-        console.log('Display text: ' + displayText);
-        display.textContent = displayText;
-
-    }
-    else {
-    displayText += this.value;
-    console.log('Display text: ' + displayText);
-    display.textContent = displayText;
-    }
-
-}
-
-*/
-
 
 
 
@@ -389,30 +252,4 @@ const operate = function(a, operator, b) {
         return divide(a, b);
     }
 }
-
-
-
-// function checkInitial(){
-//     if b
-// }
-
-
-// function (operator is pressed) {
-//                     If b == null { //first 
-//                          display a;    
-//                     };                  
-//                      
-//                      
-//                    If (operator !== 'equals'){ 
-//                                              Result = Perform operate function (existing operator)
-//                                              A = Result
-//                                              Display A
-//                    };
-//                    If (operator == 'equals'){
-//                                      4) Update to new operator
-//                                      5) Display A
-//                                      }
-//                         };
-
-
 
